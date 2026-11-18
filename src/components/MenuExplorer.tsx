@@ -34,6 +34,8 @@ import { getMenuItemImage } from '../data/foodImages';
 interface MenuExplorerProps {
   activeTab: 'comidas' | 'bebidas';
   setActiveTab: (tab: 'comidas' | 'bebidas') => void;
+  selectedCategory?: string;
+  setSelectedCategory?: (category: string) => void;
   cart: { [itemId: string]: number };
   onAddToCart: (item: MenuItem) => void;
   onRemoveFromCart: (itemId: string) => void;
@@ -65,6 +67,8 @@ const ICON_MAP: Record<string, React.ReactNode> = {
 export const MenuExplorer: React.FC<MenuExplorerProps> = ({
   activeTab,
   setActiveTab,
+  selectedCategory: controlledCategory,
+  setSelectedCategory: setControlledCategory,
   cart,
   onAddToCart,
   onRemoveFromCart,
@@ -73,7 +77,9 @@ export const MenuExplorer: React.FC<MenuExplorerProps> = ({
   bcv,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [internalCategory, setInternalCategory] = useState<string>('all');
+  const selectedCategory = controlledCategory ?? internalCategory;
+  const setSelectedCategory = setControlledCategory ?? setInternalCategory;
   const [viewMode, setViewMode] = useState<'grid' | 'compact'>('grid');
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -124,7 +130,7 @@ export const MenuExplorer: React.FC<MenuExplorerProps> = ({
   };
 
   return (
-    <section id="menu-section" className="py-16 sm:py-24 relative bg-[#060c18]">
+    <section id="menu-section" className="pt-8 sm:pt-14 pb-16 sm:pb-24 relative bg-[#060c18]">
       {/* Decorative gradient blur */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-[#0077b6]/10 rounded-full blur-[150px] pointer-events-none" />
 

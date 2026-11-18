@@ -15,6 +15,7 @@ import { MessageCircle, ShoppingBag } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<'comidas' | 'bebidas'>('comidas');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [cart, setCart] = useState<{ [itemId: string]: number }>(() => {
     try {
       const saved = localStorage.getItem('santorini_cart');
@@ -165,11 +166,21 @@ export default function App() {
   const totalCartCount = Object.values(cart).reduce((a, b) => a + b, 0);
 
   const scrollToMenu = () => {
+    setSelectedCategory('all');
     document.getElementById('menu-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleSelectPillar = (tab: 'comidas' | 'bebidas', category: string) => {
+    setActiveTab(tab);
+    setSelectedCategory(category);
+    setTimeout(() => {
+      document.getElementById('menu-section')?.scrollIntoView({ behavior: 'smooth' });
+    }, 40);
   };
 
   const scrollToDrinks = () => {
     setActiveTab('bebidas');
+    setSelectedCategory('all');
     document.getElementById('menu-section')?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -185,11 +196,16 @@ export default function App() {
 
       {/* Main Sections */}
       <main className="flex-1">
-        <Hero onExploreMenu={scrollToMenu} />
+        <Hero 
+          onExploreMenu={scrollToMenu} 
+          onSelectPillar={handleSelectPillar}
+        />
         
         <MenuExplorer
           activeTab={activeTab}
           setActiveTab={setActiveTab}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
           cart={cart}
           onAddToCart={handleAddToCart}
           onRemoveFromCart={handleRemoveFromCart}
