@@ -1,5 +1,4 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import React from 'react';
 import { 
   ArrowDown, 
   MessageCircle, 
@@ -14,17 +13,6 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onExploreMenu }) => {
-  const containerRef = useRef<HTMLElement>(null);
-  
-  // Parallax suave con Framer Motion sincronizado al scroll
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start'],
-  });
-
-  const yHeroBg = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
-  const opacityHeroText = useTransform(scrollYProgress, [0, 0.6], [1, 0.85]);
-
   const whatsappUrl = `https://wa.me/${BRAND.whatsappNumber}?text=${encodeURIComponent(
     'Hola Santorini Venezuela, deseo consultar disponibilidad y reservar una mesa / hacer un pedido.'
   )}`;
@@ -32,14 +20,14 @@ export const Hero: React.FC<HeroProps> = ({ onExploreMenu }) => {
   return (
     <section 
       id="hero" 
-      ref={containerRef}
-      className="relative min-h-[90vh] sm:min-h-screen flex flex-col justify-between pt-24 sm:pt-36 pb-8 sm:pb-12 overflow-hidden"
+      className="relative min-h-[90vh] sm:min-h-screen flex flex-col justify-between pt-24 sm:pt-36 pb-8 sm:pb-12 overflow-hidden w-full max-w-full"
     >
       {/* =========================================================================
-          BACKGROUND CON PARALLAX (MOTION): Ambiance Culinario Continuo & Sedoso
+          BACKGROUND ESTABLE Y ULTRALIGERO (CERO LAG, 120FPS NATIVO EN MÓVIL)
+          Eliminado el recalculado por JS en scroll para evitar tirones y zooms
          ========================================================================= */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <motion.div style={{ y: yHeroBg }} className="relative w-full h-[120%] -top-[8%]">
+        <div className="relative w-full h-full transform-gpu">
           <img
             src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1280&q=75"
             srcSet="
@@ -53,25 +41,22 @@ export const Hero: React.FC<HeroProps> = ({ onExploreMenu }) => {
             decoding="async"
             width="1920"
             height="1080"
-            className="w-full h-full object-cover object-center brightness-75 scale-105"
+            className="w-full h-full object-cover object-center brightness-75 will-change-transform"
           />
-          {/* Capas de gradientes sedosos para transición suave y legibilidad 100% nítida */}
+          {/* Capas de gradientes sedosos para transición suave sin saltos de render */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#060c18] via-[#060c18]/80 to-[#060c18]/50" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#060c18]/92 via-[#060c18]/65 to-transparent" />
-        </motion.div>
+        </div>
 
-        {/* Resplandores de luz líquida Azul Egeo y Oro Cálido */}
-        <div className="absolute top-1/4 right-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-[#0077b6]/25 rounded-full blur-[140px]" />
-        <div className="absolute bottom-1/4 left-10 w-60 sm:w-80 h-60 sm:h-80 bg-[#d4af37]/10 rounded-full blur-[120px]" />
+        {/* Resplandores con gradiente radial nativo (Cero consumo de GPU vs blur pesado) */}
+        <div className="absolute top-1/4 right-1/4 w-72 sm:w-96 h-72 sm:h-96 rounded-full pointer-events-none bg-[radial-gradient(circle,rgba(0,119,182,0.22)_0%,transparent_70%)]" />
+        <div className="absolute bottom-1/4 left-10 w-60 sm:w-80 h-60 sm:h-80 rounded-full pointer-events-none bg-[radial-gradient(circle,rgba(212,175,55,0.12)_0%,transparent_70%)]" />
       </div>
 
       {/* =========================================================================
-          CONTENIDO PRINCIPAL DEL HERO (100% OPTIMIZADO PARA MÓVIL Y DESKTOP)
+          CONTENIDO PRINCIPAL DEL HERO (100% ESTABLE, SIN OPACIDADES DINÁMICAS)
          ========================================================================= */}
-      <motion.div 
-        style={{ opacity: opacityHeroText }}
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex flex-col justify-center"
-      >
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex flex-col justify-center">
         <div className="max-w-3xl">
           {/* Eyebrow Pill */}
           <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/15 text-[11px] sm:text-xs text-[#90e0ef] uppercase tracking-widest mb-3 sm:mb-4 shadow-[0_0_20px_rgba(0,119,182,0.25)]">
@@ -150,11 +135,11 @@ export const Hero: React.FC<HeroProps> = ({ onExploreMenu }) => {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* =========================================================================
           TRANSICIÓN SEDOSA Y CONTINUA (SMOOTH TRANSITION VEIL):
-          Une el Hero con Nuestra Carta de forma orgánica, sin cortes bruscos ni saturación.
+          Une el Hero con Nuestra Carta de forma orgánica, sin cortes bruscos ni bloqueos de scroll
          ========================================================================= */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-8 sm:pt-10">
         {/* Píldora de Conexión Sedosa con Efecto Cristal Líquido */}
@@ -175,7 +160,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreMenu }) => {
           </button>
         </div>
 
-        {/* Gradiente de Luz Líquida que funde el fondo de comida con la siguiente sección */}
+        {/* Gradiente de Luz Líquida que funde el fondo con la siguiente sección */}
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/15 to-transparent mt-6 sm:mt-8" />
       </div>
     </section>

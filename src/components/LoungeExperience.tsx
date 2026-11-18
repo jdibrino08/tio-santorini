@@ -12,10 +12,10 @@ export const LoungeExperience: React.FC<LoungeExperienceProps> = ({ onExploreDri
   )}`;
 
   return (
-    <section id="lounge" className="py-24 relative overflow-hidden bg-[#050912]">
-      {/* Background Lighting */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#0077b6]/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#023e8a]/20 rounded-full blur-[150px] pointer-events-none" />
+    <section id="lounge" className="py-24 relative overflow-hidden bg-[#050912] w-full max-w-full">
+      {/* Background Lighting (GPU-friendly radial gradients) */}
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none bg-[radial-gradient(circle,rgba(0,119,182,0.18)_0%,transparent_70%)]" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full pointer-events-none bg-[radial-gradient(circle,rgba(2,62,138,0.22)_0%,transparent_70%)]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

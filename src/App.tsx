@@ -45,10 +45,13 @@ export default function App() {
 
   const lenisRef = useRef<Lenis | null>(null);
 
-  // Initialize Lenis smooth scroll
+  // Initialize Lenis smooth scroll (only on desktop mouse wheels; mobile keeps 100% native 120Hz touch momentum)
   useEffect(() => {
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouch) return;
+
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
