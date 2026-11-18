@@ -130,13 +130,14 @@ export const MenuExplorer: React.FC<MenuExplorerProps> = ({
   };
 
   return (
-    <section id="menu-section" className="pt-8 sm:pt-14 pb-16 sm:pb-24 relative bg-[#060c18]">
-      {/* Decorative gradient blur */}
+    <section id="menu-section" className="pt-6 sm:pt-12 pb-16 sm:pb-24 relative bg-[#060c18]">
+      {/* Decorative smooth liquid glass glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-40 bg-gradient-to-b from-[#0077b6]/12 to-transparent blur-3xl pointer-events-none" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-[#0077b6]/10 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header & Mode Switcher */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-xs font-mono uppercase tracking-widest text-[#90e0ef] mb-3">
             <Sparkles className="w-3.5 h-3.5 text-[#48cae4]" />
             <span>191 Opciones • Precios Transparentes en USD y Tasa BCV</span>
@@ -150,21 +151,24 @@ export const MenuExplorer: React.FC<MenuExplorerProps> = ({
             Gastronomía mediterránea, mariscos frescos, cortes al carbón y coctelería hasta las 3:00 AM.
           </p>
 
-          {/* Big Macro Tabs */}
-          <div className="mt-8 inline-flex p-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-xl">
+          {/* Big Macro Tabs (100% responsivo y sin saltos de línea en celular) */}
+          <div className="mt-6 sm:mt-8 inline-flex max-w-full p-1 sm:p-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-xl">
             <button
               onClick={() => {
                 setActiveTab('comidas');
                 setSelectedCategory('all');
               }}
-              className={`flex items-center gap-2 px-5 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all cursor-pointer ${
+              className={`flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-8 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === 'comidas'
                   ? 'bg-gradient-to-r from-white to-slate-200 text-[#060c18] shadow-[0_4px_20px_rgba(255,255,255,0.2)]'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              <Utensils className="w-4 h-4" />
-              <span>Carta Gastronómica (88 Platos)</span>
+              <Utensils className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+              <span>
+                <span className="hidden sm:inline">Carta Gastronómica</span>
+                <span className="sm:hidden">Comidas</span> (88)
+              </span>
             </button>
 
             <button
@@ -172,14 +176,17 @@ export const MenuExplorer: React.FC<MenuExplorerProps> = ({
                 setActiveTab('bebidas');
                 setSelectedCategory('all');
               }}
-              className={`flex items-center gap-2 px-5 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all cursor-pointer ${
+              className={`flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-8 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === 'bebidas'
                   ? 'btn-glass-aegean text-white shadow-[0_4px_20px_rgba(0,119,182,0.4)]'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              <Wine className="w-4 h-4 text-[#90e0ef]" />
-              <span>Bar & Coctelería (103 Ítems)</span>
+              <Wine className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#90e0ef] shrink-0" />
+              <span>
+                <span className="hidden sm:inline">Bar & Coctelería</span>
+                <span className="sm:hidden">Bar & Tragos</span> (103)
+              </span>
             </button>
           </div>
         </div>

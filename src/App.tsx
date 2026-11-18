@@ -170,14 +170,6 @@ export default function App() {
     document.getElementById('menu-section')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleSelectPillar = (tab: 'comidas' | 'bebidas', category: string) => {
-    setActiveTab(tab);
-    setSelectedCategory(category);
-    setTimeout(() => {
-      document.getElementById('menu-section')?.scrollIntoView({ behavior: 'smooth' });
-    }, 40);
-  };
-
   const scrollToDrinks = () => {
     setActiveTab('bebidas');
     setSelectedCategory('all');
@@ -195,11 +187,8 @@ export default function App() {
       />
 
       {/* Main Sections */}
-      <main className="flex-1">
-        <Hero 
-          onExploreMenu={scrollToMenu} 
-          onSelectPillar={handleSelectPillar}
-        />
+      <main className="flex-1 pb-16 sm:pb-0">
+        <Hero onExploreMenu={scrollToMenu} />
         
         <MenuExplorer
           activeTab={activeTab}
