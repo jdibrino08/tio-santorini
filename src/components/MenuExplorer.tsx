@@ -130,10 +130,10 @@ export const MenuExplorer: React.FC<MenuExplorerProps> = ({
   };
 
   return (
-    <section id="menu-section" className="pt-6 sm:pt-12 pb-16 sm:pb-24 relative bg-[#060c18]">
+    <section id="menu-section" className="pt-6 sm:pt-12 pb-16 sm:pb-24 relative bg-[#060c18] overflow-hidden w-full max-w-full">
       {/* Decorative smooth liquid glass glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-40 bg-gradient-to-b from-[#0077b6]/12 to-transparent blur-3xl pointer-events-none" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-[#0077b6]/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-[850px] h-[350px] bg-[#0077b6]/10 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header & Mode Switcher */}

@@ -177,7 +177,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#060c18] text-slate-100 flex flex-col font-sans selection:bg-[#0077b6]/40">
+    <div className="min-h-screen bg-[#060c18] text-slate-100 flex flex-col font-sans selection:bg-[#0077b6]/40 overflow-x-hidden w-full max-w-full">
       {/* Top Navbar */}
       <Navbar
         cartCount={totalCartCount}

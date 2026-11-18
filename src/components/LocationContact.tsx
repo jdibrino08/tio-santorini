@@ -41,7 +41,7 @@ export const LocationContact: React.FC = () => {
   };
 
   return (
-    <section id="contacto" className="py-24 relative bg-[#060c18] border-t border-white/[0.08]">
+    <section id="contacto" className="py-24 relative bg-[#060c18] border-t border-white/[0.08] overflow-hidden w-full max-w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-16">

@@ -6,11 +6,22 @@
     --font-sans: 'Outfit', 'Plus Jakarta Sans', sans-serif;
   }
   
-  body {
+  html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: clip;
+    position: relative;
     font-family: var(--font-sans);
     background-color: #050a14;
     color: #f1f5f9;
-    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: clip;
+    position: relative;
   }
 
   h1, h2, h3, .font-display {

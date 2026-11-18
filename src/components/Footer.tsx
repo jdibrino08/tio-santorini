@@ -18,9 +18,9 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#040810] border-t border-white/[0.08] text-slate-400 text-xs pt-16 pb-12 relative overflow-hidden">
+    <footer className="bg-[#040810] border-t border-white/[0.08] text-slate-400 text-xs pt-16 pb-12 relative overflow-hidden w-full max-w-full">
       {/* Decorative Aegean Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-32 bg-[#0077b6]/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[550px] h-32 bg-[#0077b6]/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
