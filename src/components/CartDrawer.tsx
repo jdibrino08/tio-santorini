@@ -227,7 +227,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
         {/* Drawer Content */}
         <div
           data-lenis-prevent
-          className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-5 space-y-6"
+          className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-5 pb-12 space-y-6"
         >
           {cartEntries.length === 0 ? (
             <div className="py-16 text-center">
@@ -495,7 +495,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
         {/* Drawer Footer with Subtotal & WhatsApp CTA */}
         {cartEntries.length > 0 && (
-          <div className="shrink-0 p-5 border-t border-white/10 bg-white/[0.02] space-y-3">
+          <div className="shrink-0 p-5 border-t border-white/15 bg-[#081020] shadow-[0_-12px_32px_rgba(0,0,0,0.7)] space-y-3 z-10">
             <div className="flex items-center justify-between">
               <div>
                 <span className="text-xs text-slate-400">Total Estimado:</span>
